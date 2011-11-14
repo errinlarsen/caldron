@@ -1,0 +1,29 @@
+.rspec
+.bundle
+db/*.sqlite3
+.sass-cache/
+vendor/ruby
+*.rbc
+*.sassc
+capybara-*.html
+/vendor/bundle
+/log/*
+/tmp/*
+/db/*.sqlite3
+/public/system/*
+/coverage/
+/spec/tmp/*
+**.orig
+config/*.yml
+rerun.txt
+pickle-email-*.html
+
+# OS-X
+.DS_Store
+
+# Thumbnails
+._*
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
