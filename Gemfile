@@ -30,5 +30,6 @@ group :test, :development do
   gem "factory_girl_rails", "~> 1.3.0"
   gem "shoulda-matchers"
   gem "guard-rspec"
+  gem "rb-fsevent", :require => false if RUBY_PLATFORM =~ /darwin/i
   gem "growl"
 end
