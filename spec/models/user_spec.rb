@@ -1,7 +1,12 @@
 require 'spec_helper'
 
 describe User do
-  subject { Factory(:user) }
+  subject do
+    new_user = Factory.build(:user)
+    new_user.family = mock_model("Family").as_null_object
+    new_user.save
+    new_user
+  end
   it { should be_valid }
 
   describe "#name" do

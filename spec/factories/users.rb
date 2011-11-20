@@ -7,6 +7,6 @@ FactoryGirl.define do
     password "abc123"
     password_confirmation "abc123"
     roles_mask "2"
-    family
+    # Family association needs to be mocked in specs
   end
 end

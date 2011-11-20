@@ -2,12 +2,10 @@ require 'spec_helper'
 
 describe Family do
   subject do
-    Factory(:family)
-    # f = Factory.build(:family)
-    # f.members << mock_model("User").as_null_object
-    # f.chore_lists << mock_model("ChoreList").as_null_object
-    # f.save!
-    # f
+    new_family = Factory.build(:family)
+    new_family.members << mock_model("User").as_null_object
+    new_family.save
+    new_family
   end
   it { should be_valid }
 
