@@ -12,8 +12,9 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :chore_lists
   has_and_belongs_to_many :assignments, :class_name => "ChoreList"
 
-  validates_presence_of :name, :email, :roles_mask
+  validates_presence_of :name, :email, :roles_mask, :family
   validates_uniqueness_of :name, :email, :case_sensitive => false
+  validates_numericality_of :roles_mask, :greater_than => 0, :only_integer => true
 
   ROLES = %w[admin parent child]
 

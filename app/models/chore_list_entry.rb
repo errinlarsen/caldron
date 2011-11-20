@@ -2,7 +2,7 @@ class ChoreListEntry < ActiveRecord::Base
   attr_accessible :completed, :notes
 
   belongs_to :chore_list
-  belongs_to :user
+  belongs_to :chore
 
-  validates_presence_of :completed
+  validates_inclusion_of :completed, :in => [true, false]
 end
