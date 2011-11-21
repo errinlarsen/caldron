@@ -3,6 +3,5 @@
 FactoryGirl.define do
   factory :family do
     name "FamilyName"
-    # User association, members, needs to be mocked in specs
   end
 end

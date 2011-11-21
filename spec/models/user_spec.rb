@@ -3,8 +3,8 @@ require 'spec_helper'
 describe User do
   subject do
     new_user = Factory.build(:user)
-    new_user.family = mock_model("Family").as_null_object
-    new_user.save
+    new_user.families << mock_model("Family").as_null_object
+    new_user.save!
     new_user
   end
   it { should be_valid }
@@ -41,13 +41,13 @@ describe User do
   describe "#roles_mask" do
     it { should validate_presence_of(:roles_mask) }
     it { should validate_numericality_of(:roles_mask) }
-    # Add should allow_value_of type matchers here!
   end
 
   describe "#roles" do
-    let(:new_roles) { %w[admin child] }
     it { should respond_to(:roles) }
     it { should respond_to(:roles=) }
+
+    let(:new_roles) { %w[admin child] }
     it "should set the roles_mask correctly" do
       subject.roles = new_roles
       subject.roles_mask.should eq(5)
@@ -71,10 +71,9 @@ describe User do
   end
 
   describe "associations" do
-    it { should belong_to(:family) }
-    it { should validate_presence_of(:family) }
     it { should have_many(:chores) }
-    it { should have_and_belong_to_many(:chore_lists) }
     it { should have_and_belong_to_many(:assignments) }
+    it { should have_and_belong_to_many(:chore_lists) }
+    it { should have_and_belong_to_many(:families) }
   end
 end

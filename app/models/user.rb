@@ -7,14 +7,15 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me
 
-  belongs_to :family
   has_many :chores
+  has_and_belongs_to_many :families
   has_and_belongs_to_many :chore_lists
   has_and_belongs_to_many :assignments, :class_name => "ChoreList"
 
-  validates_presence_of :name, :email, :roles_mask, :family
-  validates_uniqueness_of :name, :email, :case_sensitive => false
+  validates_length_of :families, :maximum => 1
   validates_numericality_of :roles_mask, :greater_than => 0, :only_integer => true
+  validates_presence_of :name, :email, :roles_mask
+  validates_uniqueness_of :name, :email, :case_sensitive => false
 
   ROLES = %w[admin parent child]
 
