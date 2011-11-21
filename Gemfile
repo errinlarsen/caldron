@@ -22,9 +22,10 @@ gem "less-rails-bootstrap"
 
 
 group :test, :development do
-  # What are the following two for?
-  # gem "hpricot", "~> 0.8.4"
-  # gem "ruby_parser", "~> 2.2.0"
+  # Q: What are the following two for?
+  # A: They are dependencies needed to create Devise views in HAML
+  gem "hpricot", "~> 0.8.4"
+  gem "ruby_parser", "~> 2.2.0"
   gem "rspec-rails", ">= 2.0.1"
   gem "capybara"
   gem "factory_girl_rails", "~> 1.3.0"
