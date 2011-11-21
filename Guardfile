@@ -6,6 +6,7 @@ guard 'rspec', :version => 2 do
   watch(%r{^spec/support/(.+)\.rb$})                  { "spec" }
   watch('spec/spec_helper.rb')  { "spec" }
 
+  watch(%r{^app/views/layouts/.*\.(erb|haml)$})       { |m| "spec/requests" }
   watch(%r{^app/views/(.+)/.*\.(erb|haml)$})          { |m| "spec/requests/#{m[1]}_spec.rb" }
   watch(%r{^app/(.+)\.rb$})                           { |m| "spec/#{m[1]}_spec.rb" }
   watch(%r{^app/(.*)(\.erb|\.haml)$})                 { |m| "spec/#{m[1]}#{m[2]}_spec.rb" }

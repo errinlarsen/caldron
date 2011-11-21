@@ -1,11 +1,15 @@
 require 'spec_helper'
 
-describe 'visiting the homepage' do
-  before do
-    visit '/'
-  end
+feature 'Home page', %q{
+  As an unregistered user
+  I want to see the home/landing page
+  So I can sign in
+} do
 
-  it 'should have a body' do
-    page.should have_css('body')    
+  scenario "Visit Home page" do
+    visit "/"
+    page.should have_link("Sign in")
+    page.should have_selector("title", :content => "Caldron")
+    page.should have_content("Welcome to Caldron")
   end
 end
