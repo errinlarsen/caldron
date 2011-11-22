@@ -1,17 +1,22 @@
-%h2 Sign up
-= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
-  = devise_error_messages!
-  %div
+- title("Sign up")
+.page-header
+  %h2 Sign up
+
+= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :class => "form-stacked"}) do |f|
+  - unless resource.errors.empty?
+    = devise_error_messages!
+  .clearfix
     = f.label :email
-    %br/
-    = f.email_field :email
-  %div
+    .input
+      = f.email_field :email
+  .clearfix
     = f.label :password
-    %br/
-    = f.password_field :password
-  %div
+    .input
+      = f.password_field :password
+  .clearfix
     = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation
-  %div= f.submit "Sign up"
-= render :partial => "devise/shared/links"
+    .input
+      = f.password_field :password_confirmation
+  .actions
+    = f.submit "Sign up"
+    = render :partial => "devise/shared/links"
