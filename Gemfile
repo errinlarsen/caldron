@@ -16,7 +16,7 @@ gem 'jquery-rails'
 gem "devise"
 gem "haml", ">= 3.0.0"
 gem "haml-rails"
-gem "less-rails-bootstrap"
+# gem "less-rails-bootstrap"
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
