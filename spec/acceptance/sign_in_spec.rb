@@ -7,12 +7,12 @@ feature "Sign in", %q{
   background { click_sign_in }
 
   scenario "Click Sign in" do
-    page.should have_selector("title", :text => "Chores: Sign in")
+    page.should have_selector("title", :text => "Caldron: Sign in")
     page.should have_selector("form")
   end
 
   scenario "Successful Sign in" do
-    FactoryGirl.create(:user)
+    Factory.create(:user, :email => "tester@test.com")
     fill_in "Email", :with => "tester@test.com"
     fill_in "Password", :with => "abc123"
     click_button("Sign in")

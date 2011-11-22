@@ -1,16 +1,22 @@
-%h2 Sign in
-= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
-  %div
+- title("Sign in")
+.page-header
+  %h2 Sign in
+
+= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :class => "form-stacked" }) do |f|
+  .clearfix
     = f.label :email
-    %br/
-    = f.email_field :email
-  %div
+    .input
+      = f.email_field :email
+  .clearfix
     = f.label :password
-    %br/
-    = f.password_field :password
+    .input
+      = f.password_field :password
   - if devise_mapping.rememberable?
-    %div
-      = f.check_box :remember_me
-      = f.label :remember_me
-  %div= f.submit "Sign in"
-= render :partial => "devise/shared/links"
+    .clearfix
+      .input
+        -# %label{ :for => "user_remember_me" }
+        = f.check_box :remember_me
+        = f.label :remember_me
+  .actions
+    = f.submit "Sign in"
+    = render :partial => "devise/shared/links"
