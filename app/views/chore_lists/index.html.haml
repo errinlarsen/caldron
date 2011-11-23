@@ -8,7 +8,26 @@
         welcome,
         = current_user.name
 
-.row
-  %ul#chore_lists
-    - @chore_lists.each do |chore_list|
-      %li= chore_list.date.inspect
+.container-fluid
+  .sidebar
+    = form_for @new_chore_list do |f|
+      %legend New chore list
+      = f.label :title
+      = f.text_field :title
+      = f.submit "Create", :class => "btn"
+    - unless @new_chore_list.errors.empty?
+      .alert-message.block-message.error
+        %p
+          %strong Errors:
+        %ul
+          - @new_chore_list.errors.full_messages.each do |e|
+            %li= e
+
+  .content
+    %dl#chore_lists_dates
+      - @chore_lists.each do |date, list|
+        %dt
+          = date.inspect
+          %ul#chore_lists
+            - list.each do |chore_list|
+              %li= chore_list.title

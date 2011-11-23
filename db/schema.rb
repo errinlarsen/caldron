@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111114071607) do
+ActiveRecord::Schema.define(:version => 20111123144458) do
 
   create_table "chore_lists", :force => true do |t|
     t.date     "date"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(:version => 20111114071607) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "title",      :limit => nil
   end
 
   create_table "users", :force => true do |t|

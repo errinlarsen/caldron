@@ -13,8 +13,7 @@
       .container
         = link_to "Caldron", root_path, :class => "brand"
         %ul.nav
-          -# %li
-          -#   // First nav option here
+          %li= link_to "Chore lists", chore_lists_path
           -# %li
           -#   // Second nav option here
           -# %li
@@ -33,7 +32,7 @@
           .alert-message.info
             = notice
         -if alert
-          .alert-message.info
+          .alert-message.alert
             = alert
 
       = yield

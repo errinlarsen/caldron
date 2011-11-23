@@ -1,8 +1,8 @@
 require "spec_helper"
 
-feature "Chore Lists", %q{
+feature "Viewing Chore Lists", %q{
   As a registered parent
-  I want to create chore lists
+  I want to view my created chore lists
 } do
   let(:parent) { Factory(:user, :email => "tester@test.com") }
   background { login_user(parent) }
@@ -18,5 +18,6 @@ feature "Chore Lists", %q{
     parent.chore_lists << Factory(:chore_list, :user => parent, :date => today )
     visit chore_lists_path
     page.should have_content(today.inspect)
+    page.should have_content("Chores for someone else")
   end
 end

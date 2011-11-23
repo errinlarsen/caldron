@@ -3,7 +3,7 @@ Caldron::Application.routes.draw do
   root :to => 'home#index'
   # match '' => 'home#index', :as => :user_root
 
-  resources :chore_lists, :only => [:index]
+  resources :chore_lists, :only => [:index, :create]
   match 'chore_lists' => 'chore_lists#index', :as => :user_root
 
   # The priority is based upon order of creation:
