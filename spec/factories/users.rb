@@ -3,9 +3,7 @@
 FactoryGirl.define do
   factory :user do
     sequence(:name) { |n| "Tester#{n}" }
-    sequence(:email) { |n| "tester#{n}@test.com" }
+    sequence(:email) { |n| "#{name}@test.com" }
     password "abc123"
-    password_confirmation "abc123"
-    roles_mask "2" # I should probably handle roles in factories better
   end
 end

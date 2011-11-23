@@ -11,52 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111121062712) do
-
-  create_table "assignments_workers", :id => false, :force => true do |t|
-    t.integer "chore_list_id"
-    t.integer "user_id"
-  end
-
-  create_table "chore_list_entries", :force => true do |t|
-    t.boolean  "completed"
-    t.string   "notes"
-    t.integer  "chore_list_id"
-    t.integer  "chore_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(:version => 20111114071607) do
 
   create_table "chore_lists", :force => true do |t|
     t.date     "date"
     t.string   "note"
-    t.integer  "family_id"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "chore_lists_users", :id => false, :force => true do |t|
-    t.integer "chore_list_id"
-    t.integer "user_id"
-  end
-
-  create_table "chores", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "user_id"
-  end
-
-  create_table "families", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "families_users", :id => false, :force => true do |t|
-    t.integer "family_id"
-    t.integer "user_id"
   end
 
   create_table "users", :force => true do |t|
@@ -72,9 +34,7 @@ ActiveRecord::Schema.define(:version => 20111121062712) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "roles_mask"
     t.string   "name"
-    t.integer  "family_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
