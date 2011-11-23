@@ -12,7 +12,7 @@ feature "Sign in", %q{
   end
 
   scenario "Successful Sign in" do
-    Factory.create(:user, :email => "tester@test.com")
+    Factory.create(:user, :name => "tester", :email => "tester@test.com")
     fill_in "Email", :with => "tester@test.com"
     fill_in "Password", :with => "abc123"
     click_button("Sign in")
