@@ -14,6 +14,12 @@ describe ChoreList do
     it { should respond_to(:note) }
     it { should respond_to(:note=) }
   end
+  
+  describe "#title" do
+    it { should respond_to(:title) }
+    it { should respond_to(:title=) }
+    it { should validate_presence_of(:title) }
+  end
 
   describe "associations" do
     it { should belong_to(:user) }

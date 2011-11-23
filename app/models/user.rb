@@ -11,4 +11,12 @@ class User < ActiveRecord::Base
 
   validates_presence_of :name, :email
   validates_uniqueness_of :name, :email, :case_sensitive => false
+
+  def chore_lists_by_date
+    chore_lists.all.inject({}) do |list, cl|
+      list[cl.date] ||= []
+      list[cl.date] << cl
+      list
+    end
+  end
 end
