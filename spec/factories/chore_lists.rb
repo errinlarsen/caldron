@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :chore_list do
-    date "2011-11-14"
+    date Time.zone.today
     note "Some Note"
   end
 end
