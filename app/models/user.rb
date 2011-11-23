@@ -7,28 +7,8 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me
 
-  has_many :chores
-  has_and_belongs_to_many :families
-  has_and_belongs_to_many :chore_lists
-  has_and_belongs_to_many :assignments, :class_name => "ChoreList"
+  has_many :chore_lists
 
-  validates_length_of :families, :maximum => 1
-  validates_numericality_of :roles_mask, :greater_than => 0, :only_integer => true
-  validates_presence_of :name, :email, :roles_mask
+  validates_presence_of :name, :email
   validates_uniqueness_of :name, :email, :case_sensitive => false
-
-  ROLES = %w[admin parent child]
-
-  # The following three methods are for cancan
-  def roles=(roles)
-    self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.sum
-  end
-
-  def roles
-    ROLES.reject { |r| ((roles_mask || 0) & 2**ROLES.index(r)).zero? }
-  end
-
-  def is?(role)
-    roles.include?(role.to_s)
-  end
 end

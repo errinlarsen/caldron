@@ -2,7 +2,7 @@ require "spec_helper"
 
 feature "Sign in", %q{
   As an administrator
-  I want to sign in to Chores
+  I want to sign in to Caldron
 } do
   background { click_sign_in }
 
