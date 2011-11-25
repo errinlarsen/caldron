@@ -1,6 +1,6 @@
 require 'active_support/inflector'
 
-guard 'rspec', :version => 2, :cli => '-fd' do
+guard 'rspec', :version => 2, :cli => '-f doc' do
   watch(%r{^spec/.+_spec\.rb$})
   watch(%r{^spec/support/(.+)\.rb$})                  { "spec" }
   watch('spec/spec_helper.rb')                        { "spec" }
