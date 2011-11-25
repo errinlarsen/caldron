@@ -4,7 +4,7 @@ feature "Viewing Chore Lists", %q{
   As a registered parent
   I want to view my created chore lists
 } do
-  let(:parent) { Factory(:user, :email => "tester@test.com") }
+  let(:parent) { Factory(:user) }
   background { login_user(parent) }
 
   scenario "Parent gets redirected to Chore Lists page" do
