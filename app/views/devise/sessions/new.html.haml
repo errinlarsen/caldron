@@ -2,7 +2,10 @@
 .page-header
   %h2 Sign in
 
-= form_for resource, :as => resource_name, :url => session_path(resource_name), :html => { :class => "form-stacked" } do |f|
+= form_for resource,
+            :as => resource_name,
+            :url => session_path(resource_name),
+            :html => { :class => "form-stacked" } do |f|
   .clearfix
     = f.label :email
     .input

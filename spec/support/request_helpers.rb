@@ -4,6 +4,17 @@ module RequestHelpers
       visit "/"
       click_link "Sign in"
     end
+
+    def click_sign_up
+      visit "/"
+      click_link "Sign up"
+    end
+
+    def click_my_account
+      visit "/"
+      click_link "My account"
+    end
+
     def login_user(user)
       visit new_user_session_path
       fill_in "Email", :with => "tester@test.com"
