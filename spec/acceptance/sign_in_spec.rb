@@ -1,7 +1,7 @@
 require "spec_helper"
 
 feature "Sign in", %q{
-  As an administrator
+  As a registered user
   I want to sign in to Caldron
 } do
   background { click_sign_in }
@@ -15,8 +15,9 @@ feature "Sign in", %q{
     Factory.create(:user, :name => "tester", :email => "tester@test.com")
     fill_in "Email", :with => "tester@test.com"
     fill_in "Password", :with => "abc123"
-    click_button("Sign in")
-    current_path.should == user_root_path # this path is used by Devise
+    click_button "Sign in"
+    current_path.should == user_root_path
+    page.should have_content "Signed in successfully."
   end
 
   scenario "Unsuccessful Sign in" do
