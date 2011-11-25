@@ -4,7 +4,7 @@ feature "Creting Chore Lists", %q{
   As a registered parent
   I want to create new chore lists
 } do
-  let(:parent) { Factory(:user, :email => "tester@test.com") }
+  let(:parent) { Factory(:user) }
   background { login_user(parent) }
 
   scenario "Parent create a new Chore List" do
