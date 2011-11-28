@@ -1,18 +1,18 @@
-source 'http://rubygems.org'
+source "http://rubygems.org"
 
-gem 'rails', '3.1.1'
-gem 'sqlite3'
+gem "rails", "3.1.1"
+gem "sqlite3"
 
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.1.4'
-  gem 'coffee-rails', '~> 3.1.1'
-  gem 'uglifier', '>= 1.0.3'
+  gem "sass-rails",   "~> 3.1.4"
+  gem "coffee-rails", "~> 3.1.1"
+  gem "uglifier", ">= 1.0.3"
 end
 
-gem 'jquery-rails'
+gem "jquery-rails"
 gem "devise"
 gem "haml", ">= 3.0.0"
 gem "haml-rails"
@@ -35,4 +35,6 @@ group :test, :development do
   gem "rb-fsevent", :require => false if RUBY_PLATFORM =~ /darwin/i
   gem "growl"
   gem "growl_notify"
+  # Alternative console
+  gem "pry-rails"
 end
