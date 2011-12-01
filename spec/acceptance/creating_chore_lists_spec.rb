@@ -1,6 +1,6 @@
 require "spec_helper"
 
-feature "Creting Chore Lists", %q{
+feature "Creating Chore Lists", %q{
   As a registered parent
   I want to create new chore lists
 } do
