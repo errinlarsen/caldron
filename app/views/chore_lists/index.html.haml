@@ -24,10 +24,10 @@
             %li= e
 
   .content
-    %dl#chore_lists_dates
+    %dl#chore-lists-dates
       - @chore_lists.each do |date, list|
-        %dt
+        %dt{:id => date.to_s}
           = date.inspect
           %ul#chore_lists
             - list.each do |chore_list|
-              %li= chore_list.title
+              %li= link_to chore_list.title, chore_list_path(chore_list)

@@ -6,6 +6,12 @@ class ChoreListsController < ApplicationController
     @new_chore_list = ChoreList.new
   end
 
+  def show
+    @chore_list = ChoreList.find params[:id]
+    @entries = @chore_list.chore_list_entries
+    @new_chore = Chore.new
+  end
+
   def create
     @new_chore_list = current_user.chore_lists.build(params[:chore_list])
     @new_chore_list.date = Time.zone.today
@@ -16,6 +22,20 @@ class ChoreListsController < ApplicationController
       flash.now[:alert] = "The new chore list could not be created."
       @chore_lists = current_user.chore_lists_by_date
       render :index
+    end
+  end
+
+  def create_chore
+    @chore_list = ChoreList.find params[:id]
+    @new_chore = @chore_list.chores.build params[:chore_list][:chores]
+    @new_chore.chore_lists << @chore_list
+    if @new_chore.save
+      flash[:notice] = "New chore was successfully created."
+      redirect_to chore_list_path(@chore_list)
+    else
+      flash.now[:alert] = "The new chore could not be created."
+      @chores = @chore_list.chores
+      render :show
     end
   end
 end

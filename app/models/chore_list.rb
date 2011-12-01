@@ -3,5 +3,8 @@ class ChoreList < ActiveRecord::Base
 
   belongs_to :user
 
+  has_many :chore_list_entries
+  has_many :chores, :through => :chore_list_entries
+
   validates_presence_of :date, :title
 end

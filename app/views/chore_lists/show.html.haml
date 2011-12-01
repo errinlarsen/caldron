@@ -1,0 +1,32 @@
+- title(@chore_list.title)
+
+.row
+  .page-header
+    %h1
+      = @chore_list.title
+      %small
+        = @chore_list.date.inspect
+
+.container-fluid
+  .sidebar
+    = form_for @chore_list, :url => :create_chore_for_chore_list do |chore_list|
+      = chore_list.fields_for :chores do |f|
+        %legend New chore
+        = f.label :name
+        = f.text_field :name
+        = f.submit "Create", :class => "btn"
+      -unless @new_chore.errors.empty?
+        .alert-message.block-message.error
+          %p
+            %strong Errors:
+          %ul
+            - @new_chore.errors.full_messages.each do |e|
+              %li= e
+
+  .content
+    %ul#chores
+      - @entries.each do |entry|
+        %li
+          #{entry.chore.name}
+          -if entry.completed?
+            (completed)
