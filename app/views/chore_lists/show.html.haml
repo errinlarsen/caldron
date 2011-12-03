@@ -22,11 +22,15 @@
           %ul
             - @new_chore.errors.full_messages.each do |e|
               %li= e
+    = button_to "Delete list", @chore_list,
+      :confirm => "Are you sure?", :method => :delete,
+      :class => "btn danger", :form_class => "form-stacked"
 
   .content
-    %ul#chores
+    %table#chores.zebra-striped.span10
       - @entries.each do |entry|
-        %li
-          #{entry.chore.name}
-          -if entry.completed?
-            (completed)
+        %tr
+          %td
+            #{entry.chore.name}
+            -if entry.completed?
+              (completed)
