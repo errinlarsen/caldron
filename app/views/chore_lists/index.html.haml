@@ -28,6 +28,12 @@
       - @chore_lists.each do |date, list|
         %dt{:id => date.to_s}
           = date.inspect
-          %ul#chore_lists
+          %table#chore_lists.zebra-striped.span10
             - list.each do |chore_list|
-              %li= link_to chore_list.title, chore_list_path(chore_list)
+              %tr
+                %td
+                  = link_to chore_list.title, chore_list_path(chore_list)
+                  = link_to 'x', chore_list_path(chore_list),
+                    :confirm => 'Are you sure?', :method => :delete,
+                    :class => "close"
+              

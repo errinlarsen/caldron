@@ -40,4 +40,11 @@ class ChoreListsController < ApplicationController
       render :show
     end
   end
+
+  def destroy
+    @chore_list = ChoreList.find(params[:id])
+    @chore_list.destroy
+    flash[:notice] = "Successfully removed chore list."
+    redirect_to chore_lists_path
+  end
 end
