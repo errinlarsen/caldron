@@ -31,9 +31,12 @@
           %table#chore_lists.zebra-striped.span10
             - list.each do |chore_list|
               %tr
+                %td{ :onclick => "location.href='#{chore_list_path(chore_list)}'" }
+                  %strong
+                    = link_to chore_list.title, chore_list_path(chore_list),
+                      :class => "pull-left"
                 %td
-                  = link_to chore_list.title, chore_list_path(chore_list)
-                  = link_to 'x', chore_list_path(chore_list),
-                    :confirm => 'Are you sure?', :method => :delete,
+                  = button_to 'X', chore_list_path(chore_list),
+                    :confirm => "Are you sure?", :method => :delete,
                     :class => "close"
               
