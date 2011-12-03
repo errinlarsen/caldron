@@ -7,14 +7,18 @@
       %small
         = @chore_list.date.inspect
 
-.container-fluid
-  .sidebar
-    = form_for @chore_list, :url => :create_chore_for_chore_list do |chore_list|
-      = chore_list.fields_for :chores do |f|
-        %legend New chore
-        = f.label :name
-        = f.text_field :name
-        = f.submit "Create", :class => "btn"
+.container
+  .row
+    .span5
+      = form_for @chore_list,
+        :url => :create_chore_for_chore_list,
+        :html => { :class => "form-stacked" } do |chore_list|
+        = chore_list.fields_for :chores do |f|
+          .clearfix
+            = f.label :name, "New chore"
+            .input
+              = f.text_field :name, :class => "span3"
+              = f.submit "Create", :class => "btn"
       -unless @new_chore.errors.empty?
         .alert-message.block-message.error
           %p
@@ -22,15 +26,20 @@
           %ul
             - @new_chore.errors.full_messages.each do |e|
               %li= e
-    = button_to "Delete list", @chore_list,
-      :confirm => "Are you sure?", :method => :delete,
-      :class => "btn danger", :form_class => "form-stacked"
 
-  .content
-    %table#chores.zebra-striped.span10
-      - @entries.each do |entry|
-        %tr
-          %td
-            #{entry.chore.name}
-            -if entry.completed?
-              (completed)
+    .span11
+      %table#chores.zebra-striped
+        - @entries.each do |entry|
+          %tr
+            %td{ :style => "vertical-align: middle" }
+              %strong.blue= entry.chore.name
+              -if entry.completed?
+                %span.label.success done
+
+  .row
+    = form_for @chore_list,
+        :html => { :method => :delete } do |f|
+      .actions
+        = f.submit "Delete list", :confirm => "Are you sure?",
+          :class => "btn danger"
+        = link_to "Back", :back, :class => "btn"
