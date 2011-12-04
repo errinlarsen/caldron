@@ -1,15 +1,4 @@
 Caldron::Application.routes.draw do
-  root :to => "home#index"
-
-  # Chore Lists stuff
-  resources :chore_lists, :only => [:index, :create, :show, :destroy] do
-    put "create_chore", :on => :member, :as => "create_chore_for"
-  end
-
-  # Devise stuff
-  devise_for :users
-  match "chore_lists" => "chore_lists#index", :as => :user_root
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
