@@ -59,7 +59,7 @@ describe List do
     it "should add the chore to the list" do
       chore = Object.new
       @it.add_chore(chore)
-      @it.chores.must_inclue(chore)
+      @it.chores.must_include(chore)
     end
   end
 
@@ -74,7 +74,7 @@ describe List do
     end
 
     it "should add the list to the board" do
-      @board.expect :add_entry, nil, [@it]
+      @board.expect :add_list, nil, [@it]
       @it.post
     end
   end
