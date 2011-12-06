@@ -5,5 +5,5 @@
       = " - "
       %small
         = list.date.inspect
-  %p Chores should go here
+  %ul= render :partial => "chore", :collection => list.chores
       
