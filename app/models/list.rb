@@ -9,7 +9,7 @@ class List
   end
 
   def post
-    board.add_entry(self)
+    board.add_list(self)
   end
 
   def new_chore
