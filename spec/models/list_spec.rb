@@ -55,6 +55,14 @@ describe List do
     @it.board.must_equal board
   end
 
+  describe "#add_chore" do
+    it "should add the chore to the list" do
+      chore = Object.new
+      @it.add_chore(chore)
+      @it.chores.must_inclue(chore)
+    end
+  end
+
   describe "#post" do
     before do
       @board = MiniTest::Mock.new
