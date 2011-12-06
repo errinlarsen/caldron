@@ -3,7 +3,8 @@ class List
   attr_reader :chores
   attr_writer :chore_maker
 
-  def initialize
+  def initialize(attrs={})
+    attrs.each { |attr, val| send("#{attr}=", val) }
     @chores = []
   end
 
