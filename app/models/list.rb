@@ -3,18 +3,23 @@ class List
   attr_reader :chores
   attr_writer :chore_maker
 
-  def initialize
+  def initialize(attrs={})
+    attrs.each { |attr, val| send("#{attr}=", val) }
     @chores = []
   end
 
   def post
-    board.add_entry(self)
+    board.add_list(self)
   end
 
-  def new_chore
-    chore_maker.call.tap do |new_chore|
+  def new_chore(*args)
+    chore_maker.call(*args).tap do |new_chore|
       new_chore.list = self
     end
+  end
+
+  def add_chore(chore)
+    chores << chore
   end
 
 

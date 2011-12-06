@@ -14,10 +14,14 @@ class Board
     "Letting other people know they need to get stuff done"
   end
 
-  def new_list
-    list_maker.call.tap do |new_list|
+  def new_list(*args)
+    list_maker.call(*args).tap do |new_list|
       new_list.board = self
     end
+  end
+
+  def add_list(list)
+    lists << list
   end
   
 

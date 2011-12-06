@@ -6,10 +6,12 @@ require_relative "../../app/models/list"
 describe List do
   before do
     @it = List.new
+    @today = Date.today
   end
 
   it "should start with blank attributes" do
     @it.date.must_be_nil
+    @it.title.must_be_nil
   end
 
   it "should have no chores" do
@@ -22,9 +24,14 @@ describe List do
   end
 
   it "should support reading and writing a date" do
-    today = Date.today
-    @it.date = today
-    @it.date.must_equal today
+    @it.date = @today
+    @it.date.must_equal @today
+  end
+
+  it "should support setting attributes in the initializer" do
+    it = List.new(:title => "Some title", :date => @today)
+    it.title.must_equal "Some title"
+    it.date.must_equal @today
   end
 
   describe "#new_chore" do
@@ -48,6 +55,14 @@ describe List do
     @it.board.must_equal board
   end
 
+  describe "#add_chore" do
+    it "should add the chore to the list" do
+      chore = Object.new
+      @it.add_chore(chore)
+      @it.chores.must_include(chore)
+    end
+  end
+
   describe "#post" do
     before do
       @board = MiniTest::Mock.new
@@ -59,7 +74,7 @@ describe List do
     end
 
     it "should add the list to the board" do
-      @board.expect :add_entry, nil, [@it]
+      @board.expect :add_list, nil, [@it]
       @it.post
     end
   end
