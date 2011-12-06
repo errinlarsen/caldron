@@ -16,7 +16,11 @@ class BoardController < ApplicationController
 
     list2 = @board.new_list(:date => today + 1.day,
                             :title => "Tomorrow's chores")
-    # list2.chores += ["Clean your room", "Feed the dogs", "Wash the car"]
+    chores2 = ["Clean your room", "Feed the dogs", "Wash the car"]
+    chores2.each do |name|
+      chore = list2.new_chore(:name => name)
+      chore.write
+    end
     list2.post
   end
 end
