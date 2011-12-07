@@ -10,7 +10,6 @@ require_relative "../../app/models/list"
 describe List do
   before do
     @it = List.new
-    @today = Date.today
   end
 
   it "should start with blank attributes" do
@@ -28,9 +27,8 @@ describe List do
   end
 
   it "should support setting attributes in the initializer" do
-    it = List.new(:title => "Some title", :date => @today)
+    it = List.new(:title => "Some title")
     it.title.must_equal "Some title"
-    it.date.must_equal @today
   end
 
   describe "#date" do
@@ -42,8 +40,11 @@ describe List do
 
     describe "after posting" do
       before do
+        @clock = stub!
+        @today = Date.parse "2011-12-07"
+        stub(@clock).today() { @today }
         @it.board = stub!
-        @it.post
+        @it.post(@clock)
       end
 
       it "should be a Date" do

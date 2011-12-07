@@ -11,7 +11,8 @@ class List
     @chores = []
   end
 
-  def post
+  def post(calendar=Date)
+    self.date = calendar.today
     board.add_list(self)
   end
 
