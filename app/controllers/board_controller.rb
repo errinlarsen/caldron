@@ -1,7 +1,5 @@
 class BoardController < ApplicationController
   def index
-    @board = Board.new
-
     # Temporary - for testing
     today = Time.zone.today
     list1 = @board.new_list
