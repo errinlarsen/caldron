@@ -27,15 +27,33 @@ describe List do
     @it.title.must_equal "Someone's chores"
   end
 
-  it "should support reading and writing a date" do
-    @it.date = @today
-    @it.date.must_equal @today
-  end
-
   it "should support setting attributes in the initializer" do
     it = List.new(:title => "Some title", :date => @today)
     it.title.must_equal "Some title"
     it.date.must_equal @today
+  end
+
+  describe "#date" do
+    describe "before posting" do
+      it "should be blank" do
+        @it.date.must_be_nil
+      end
+    end
+
+    describe "after posting" do
+      before do
+        @it.board = stub!
+        @it.post
+      end
+
+      it "should be a Date" do
+        @it.date.class.must_equal(Date)
+      end
+
+      it "should be the current date" do
+        @it.date.must_equal(@today)
+      end
+    end
   end
 
   describe "#new_chore" do
