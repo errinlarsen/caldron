@@ -1,6 +1,10 @@
 require "minitest/autorun"
 require "ostruct"
 require "date"
+require_relative "../spec_helper_lite"
+
+stub_module "ActiveModel::Conversion"
+stub_module "ActiveModel::Naming"
 require_relative "../../app/models/list"
 
 describe List do
