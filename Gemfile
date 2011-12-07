@@ -21,6 +21,7 @@ gem "haml-rails"
 
 
 group :test, :development do
+  gem "rr"  # Concise test doubles gem
   # Q: What are the following two for?
   # A: They are dependencies needed to create Devise views in HAML
   # gem "hpricot", "~> 0.8.4"
