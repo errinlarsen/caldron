@@ -5,6 +5,6 @@ class ApplicationController < ActionController::Base
   private
 
   def init_board
-    @board = Board.new
+    @board = THE_BOARD
   end
 end
