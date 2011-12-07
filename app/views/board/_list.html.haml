@@ -1,9 +1,7 @@
-%article
-  %header
-    %h3
-      = list.title
-      = " - "
-      %small
-        = list.date.inspect
-  %ul= render :partial => "chore", :collection => list.chores
-      
+.chore-list{ :id => list.date.to_s }
+  %h3
+    = list.title
+    = " - "
+    %small
+      = list.date.inspect
+  %ul.chores= render :partial => "chore", :collection => list.chores
