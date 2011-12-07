@@ -40,11 +40,11 @@ describe List do
 
     describe "after posting" do
       before do
-        @clock = stub!
+        @calendar = stub!
         @today = Date.parse "2011-12-07"
-        stub(@clock).today() { @today }
+        stub(@calendar).today() { @today }
         @it.board = stub!
-        @it.post(@clock)
+        @it.post(@calendar)
       end
 
       it "should be a Date" do
