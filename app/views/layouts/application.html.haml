@@ -1,0 +1,40 @@
+!!!
+%html
+  %head
+    %title Caldron
+    %meta{ :name => "description", :content => "Caldron is a Web application for parents to manage chores for a family" }
+    %meta{ :name => "Errin Larsen", :name => "author" }
+    = stylesheet_link_tag :application
+    = javascript_include_tag :application
+    = csrf_meta_tags
+%body
+  .topbar
+    .fill
+      .container
+        = link_to "Caldron", root_path, :class => "brand"
+        %ul.nav
+          %li= link_to "New chore list...", new_list_path
+          -# %li= link_to "Chore lists", chore_lists_path
+          -# %li
+          -#   // Second nav option here
+          -# %li
+          -#   // and so on
+        %ul.nav.secondary-nav
+          -# -if user_signed_in?
+          -#   %li= link_to "My account", edit_user_registration_path
+          -#   %li= link_to "Sign out", destroy_user_session_path, :method => :delete
+          -# -else
+          -#   %li= link_to "Sign in", new_user_session_path
+          -#   %li= link_to "Sign up", new_user_registration_path
+
+  .container
+    .content
+      .row
+        -if notice
+          .alert-message.info
+            = notice
+        -if alert
+          .alert-message.alert
+            = alert
+
+      = yield
