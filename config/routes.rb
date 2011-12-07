@@ -1,7 +1,7 @@
 Caldron::Application.routes.draw do
-  get "board/index"
-
   root :to => "board#index"
+  resources :lists
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
