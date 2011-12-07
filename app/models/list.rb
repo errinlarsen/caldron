@@ -1,4 +1,7 @@
 class List
+  extend ActiveModel::Naming
+  include ActiveModel::Conversion
+
   attr_accessor :board, :date, :title
   attr_reader :chores
   attr_writer :chore_maker
@@ -20,6 +23,11 @@ class List
 
   def add_chore(chore)
     chores << chore
+  end
+
+  # for ActiveModel
+  def persisted?
+    false
   end
 
 
