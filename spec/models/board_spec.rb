@@ -1,5 +1,6 @@
 require "minitest/autorun"
 require "ostruct"
+require "date"
 require_relative "../../app/models/board"
 
 describe Board do
@@ -9,6 +10,31 @@ describe Board do
 
   it "should have no lists" do
     @it.lists.must_be_empty
+  end
+
+  describe "#lists" do
+    def stub_list_with_date(date)
+      OpenStruct.new(:date => Date.parse(date))
+    end
+
+    it "should be sorted in reverse-chronological order" do
+      oldest = stub_list_with_date("2011-09-09")
+      newest = stub_list_with_date("2011-09-11")
+      middle = stub_list_with_date("2011-09-10")
+
+      @it.add_list(oldest)
+      @it.add_list(newest)
+      @it.add_list(middle)
+      @it.lists.must_equal([newest, middle, oldest])
+    end
+
+    it "should be limited to 10 lists" do
+      10.times { |d| @it.add_list(stub_list_with_date("2011-09-#{d+1}")) }
+      oldest = stub_list_with_date("2011-08-30")
+      @it.add_list(oldest)
+      @it.lists.size.must_equal(10)
+      @it.lists.wont_include(oldest)
+    end
   end
 
   describe "#new_list" do
@@ -36,7 +62,7 @@ describe Board do
 
   describe "#add_list" do
     it "should add the list to the board" do
-      list = Object.new
+      list = OpenStruct.new(:date => Date.today)
       @it.add_list(list)
       @it.lists.must_include(list)
     end
