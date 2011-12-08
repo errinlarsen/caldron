@@ -14,6 +14,10 @@ class Board
     "Letting other people know they need to get stuff done"
   end
 
+  def lists
+    @lists.sort_by { |l| l.date }.reverse.take(10)
+  end
+
   def new_list(*args)
     list_maker.call(*args).tap do |new_list|
       new_list.board = self
@@ -21,7 +25,7 @@ class Board
   end
 
   def add_list(list)
-    lists << list
+    @lists << list
   end
   
 
